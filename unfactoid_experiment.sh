@@ -36,14 +36,14 @@ python run_squad.py \
   --vocab_file=./checkpoints/chinese_L-12_H-768_A-12/vocab.txt \
   --bert_config_file=./checkpoints/chinese_L-12_H-768_A-12/bert_config.json \
   --init_checkpoint=./checkpoints/CIPS-sogou-unfactoid/model.ckpt-99520 \
-  --do_train=False \
+  --do_train=True \
   --train_file=./data/CIPS-sogou/train.v1.squad.json \
-  --do_predict=Fals \
+  --do_predict=False \
   --predict_file=./data/CIPS-sogou/valid.squad.json \
   --train_batch_size=2 \
   --learning_rate=3e-5 \
   --num_train_epochs=2.0 \
   --max_seq_length=512 \
-  --doc_stride=256 \
+  --doc_stride=400 \
   --output_dir=$OUTPUT_DIR
 # python $SQUAD_DIR/evaluate-v1.1.py ./data/CIPS-sogou/valid.squad.json $OUTPUT_DIR/predictions.json

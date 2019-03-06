@@ -254,7 +254,10 @@ def read_squad_examples(input_file, is_training):
                         doc_tokens[-1] += c
                     prev_is_whitespace = False
                 char_to_word_offset.append(len(doc_tokens) - 1)
+<<<<<<< HEAD
 
+=======
+>>>>>>> baa201bbafb959b849caa9d596f9a40fe1461015
             for qa in paragraph["qas"]:
                 qas_id = qa["id"]
                 question_text = qa["question"]
@@ -288,6 +291,10 @@ def read_squad_examples(input_file, is_training):
                         cleaned_answer_text = " ".join(
                             tokenization.whitespace_tokenize(orig_answer_text))
                         if actual_text.find(cleaned_answer_text) == -1:
+<<<<<<< HEAD
+=======
+                            import pdb;pdb.set_trace()
+>>>>>>> baa201bbafb959b849caa9d596f9a40fe1461015
                             tf.logging.warning("Could not find answer: '%s' vs. '%s'",
                                                actual_text, cleaned_answer_text)
                             continue
@@ -315,7 +322,11 @@ def convert_examples_to_features(examples, tokenizer, max_seq_length,
     """Loads a data file into a list of `InputBatch`s."""
 
     unique_id = 1000000000
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> baa201bbafb959b849caa9d596f9a40fe1461015
     for (example_index, example) in enumerate(tqdm(examples)):
         query_tokens = tokenizer.tokenize(example.question_text)
 
@@ -327,7 +338,11 @@ def convert_examples_to_features(examples, tokenizer, max_seq_length,
         all_doc_tokens = []
         # tok_to_orig_index 指示tokenize后当前的token属于第几个原始词
         # orig_to_tok_index 指示tokenize后原始词来自于token列表(all_doc_tokens)的哪些词(连续的)，把这些词的开始位置作为值记录下来
+<<<<<<< HEAD
         # all_doc_tokens tokenize doc_tokens后获得的token列表，而doc_tokens是context whitespace_tokenize后的结果
+=======
+        # all_doc_tokens tokenize doc_tokens后获得的token列表，而doc_tokens是context whitespace_tokenize后的结果 
+>>>>>>> baa201bbafb959b849caa9d596f9a40fe1461015
         for (i, token) in enumerate(example.doc_tokens):
             orig_to_tok_index.append(len(all_doc_tokens))
             sub_tokens = tokenizer.tokenize(token)
@@ -360,7 +375,11 @@ def convert_examples_to_features(examples, tokenizer, max_seq_length,
             "DocSpan", ["start", "length"])
         doc_spans = []
         start_offset = 0
+<<<<<<< HEAD
         # doc_spans 记录由doc_stride分割的context
+=======
+        # all_doc_tokens tonkenize后得
+>>>>>>> baa201bbafb959b849caa9d596f9a40fe1461015
         while start_offset < len(all_doc_tokens):
             length = len(all_doc_tokens) - start_offset
             if length > max_tokens_for_doc:
@@ -382,7 +401,10 @@ def convert_examples_to_features(examples, tokenizer, max_seq_length,
                 segment_ids.append(0)
             tokens.append("[SEP]")
             segment_ids.append(0)
+<<<<<<< HEAD
 
+=======
+>>>>>>> baa201bbafb959b849caa9d596f9a40fe1461015
             for i in range(doc_span.length):
                 split_token_index = doc_span.start + i
                 token_to_orig_map[len(
@@ -427,7 +449,10 @@ def convert_examples_to_features(examples, tokenizer, max_seq_length,
                 if not (tok_start_position >= doc_start and
                         tok_end_position <= doc_end):
                     out_of_span = True
+<<<<<<< HEAD
                 # 如果answer的起始位置不在同一个span中，start_position 和 end_position 均置为0
+=======
+>>>>>>> baa201bbafb959b849caa9d596f9a40fe1461015
                 if out_of_span:
                     start_position = 0
                     end_position = 0
@@ -566,6 +591,10 @@ def _check_is_max_context(doc_spans, cur_span_index, position):
 def create_model(bert_config, is_training, input_ids, input_mask, segment_ids,
                  use_one_hot_embeddings):
     """Creates a classification model."""
+<<<<<<< HEAD
+=======
+   
+>>>>>>> baa201bbafb959b849caa9d596f9a40fe1461015
     model = modeling.BertModel(
         config=bert_config,
         is_training=is_training,
@@ -759,6 +788,7 @@ RawResult = collections.namedtuple("RawResult",
 def write_predictions(all_examples, all_features, all_results, n_best_size,
                       max_answer_length, do_lower_case, output_prediction_file,
                       output_nbest_file, output_null_log_odds_file):
+<<<<<<< HEAD
     """Write final predictions to the json file and log-odds of null if needed.
     all_examples: list. 以类SquadExample为元素的一个列表
     all_features: list. 以类InputFeatures为元素的一个列表
@@ -769,6 +799,9 @@ def write_predictions(all_examples, all_features, all_results, n_best_size,
     output_prediction_file: string. 结果写入文件路径，结果以字典写入，key值为id, value值为结果
     output_nbest_file: string. string. 将最好的几个结果写入的文件路径
     """
+=======
+    """Write final predictions to the json file and log-odds of null if needed."""
+>>>>>>> baa201bbafb959b849caa9d596f9a40fe1461015
     tf.logging.info("Writing predictions to: %s" % (output_prediction_file))
     tf.logging.info("Writing nbest to: %s" % (output_nbest_file))
 
@@ -1187,6 +1220,7 @@ def main(_):
     num_train_steps = None
     num_warmup_steps = None
     if FLAGS.do_train:
+<<<<<<< HEAD
         train_examples = read_squad_examples(
             input_file=FLAGS.train_file, is_training=True)
         num_train_steps = int(
@@ -1197,6 +1231,48 @@ def main(_):
         # buffer in in the `input_fn`.
         rng = random.Random(12345)
         rng.shuffle(train_examples)
+=======
+        if not tf.gfile.Exists(os.path.join(FLAGS.output_dir, "train.tf_record")):
+            train_examples = read_squad_examples(
+                input_file=FLAGS.train_file, is_training=True)
+            num_train_steps = int(
+                len(train_examples) / FLAGS.train_batch_size * FLAGS.num_train_epochs)
+            num_warmup_steps = int(num_train_steps * FLAGS.warmup_proportion)
+
+            # Pre-shuffle the input to avoid having to make a very large shuffle
+            # buffer in in the `input_fn`.
+            rng = random.Random(12345)
+            rng.shuffle(train_examples)
+
+            train_writer = FeatureWriter(
+                filename=os.path.join(FLAGS.output_dir, "train.tf_record"),
+                is_training=True)
+            convert_examples_to_features(
+                examples=train_examples,
+                tokenizer=tokenizer,
+                max_seq_length=FLAGS.max_seq_length,
+                doc_stride=FLAGS.doc_stride,
+                max_query_length=FLAGS.max_query_length,
+                is_training=True,
+                output_fn=train_writer.process_feature)
+            train_writer.close()
+            
+            train_filename = os.path.join(FLAGS.output_dir, "train.tf_record")
+            train_examples_number = len(train_examples)
+            del train_examples
+        else:
+            with tf.gfile.Open(FLAGS.train_file, "r") as reader:
+                input_data = json.load(reader)["data"]
+            train_examples_number = 0
+            for entry in input_data:
+                for paragraph in entry["paragraphs"]:
+                    for qa in paragraph["qas"]:
+                        train_examples_number += 1
+            num_train_steps = int(
+                train_examples_number / FLAGS.train_batch_size * FLAGS.num_train_epochs)
+            num_warmup_steps = int(num_train_steps * FLAGS.warmup_proportion)
+            train_filename = os.path.join(FLAGS.output_dir, "train.tf_record")
+>>>>>>> baa201bbafb959b849caa9d596f9a40fe1461015
 
     model_fn = model_fn_builder(
         bert_config=bert_config,
@@ -1215,6 +1291,7 @@ def main(_):
         config=run_config,
         train_batch_size=FLAGS.train_batch_size,
         predict_batch_size=FLAGS.predict_batch_size)
+<<<<<<< HEAD
 
     if FLAGS.do_train:
         # We write to a temporary file to avoid storing very large constant tensors
@@ -1245,11 +1322,30 @@ def main(_):
         # train_input_fn 是可以被estimator.train调用的回调函数
         train_input_fn = input_fn_builder(
             input_file=train_writer.filename,
+=======
+    
+    if FLAGS.do_train:
+        # We write to a temporary file to avoid storing very large constant tensors
+        # in memory.
+        
+        tf.logging.info("***** Running training *****")
+        tf.logging.info("  Num orig examples = %d", train_examples_number)
+        tf.logging.info("  Batch size = %d", FLAGS.train_batch_size)
+        tf.logging.info("  Num steps = %d", num_train_steps)
+        
+
+        train_input_fn = input_fn_builder(
+            input_file=train_filename,
+>>>>>>> baa201bbafb959b849caa9d596f9a40fe1461015
             seq_length=FLAGS.max_seq_length,
             is_training=True,
             drop_remainder=True)
         estimator.train(input_fn=train_input_fn, max_steps=num_train_steps)
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> baa201bbafb959b849caa9d596f9a40fe1461015
     if FLAGS.do_predict:
         eval_examples = read_squad_examples(
             input_file=FLAGS.predict_file, is_training=False)
@@ -1260,7 +1356,10 @@ def main(_):
         eval_features = []
 
         def append_feature(feature):
+<<<<<<< HEAD
             # feature: InputFeatures类的实例
+=======
+>>>>>>> baa201bbafb959b849caa9d596f9a40fe1461015
             eval_features.append(feature)
             eval_writer.process_feature(feature)
 

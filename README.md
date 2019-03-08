@@ -23,20 +23,20 @@
 ### 相关资料
 
 #### 语言模型
-- Deep contextualized word representations\[[paper](https://arxiv.org/pdf/1802.05365.pdf%C3%82)\]
-- BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding\[[paper](https://arxiv.org/pdf/1810.04805.pdf)\]
-- Improving Language Understanding by Generative Pre-Training\[[paper](https://s3-us-west-2.amazonaws.com/openai-assets/research-covers/language-unsupervised/language_understanding_paper.pdf)\]
-- Language Models are unsupervised Multitask Learners\[[paper](https://d4mucfpksywv.cloudfront.net/better-language-models/language_models_are_unsupervised_multitask_learners.pdf)\]
+- Deep contextualized word representations\[[paper](https://arxiv.org/pdf/1802.05365.pdf%C3%82)\] <font color=red>(ELMO)</font>
+- BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding\[[paper](https://arxiv.org/pdf/1810.04805.pdf)\] <font color=red>(Bert)</font>
+- Improving Language Understanding by Generative Pre-Training\[[paper](https://s3-us-west-2.amazonaws.com/openai-assets/research-covers/language-unsupervised/language_understanding_paper.pdf)\]<font color=red>(GPT)</font>
+- Language Models are unsupervised Multitask Learners\[[paper](https://d4mucfpksywv.cloudfront.net/better-language-models/language_models_are_unsupervised_multitask_learners.pdf)\]<font color=red>(GPT-2)</font>
 - Attention Is All You Need\[[paper](https://papers.nips.cc/paper/7181-attention-is-all-you-need.pdf)\]
 - Character-Aware Neural Language Models\[[paper](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.718.6564&rep=rep1&type=pdf)\]
-- Transformer-XL: Attentive Language Models Beyond A Fixed-Length Context\[[paper](https://arxiv.org/pdf/1901.02860.pdf)\]
+- Transformer-XL: Attentive Language Models Beyond A Fixed-Length Context\[[paper](https://arxiv.org/pdf/1901.02860.pdf)\]<font color=red>(长Bert)</font>
 
 #### 问答/机器阅读理解
-- Reading Wikipedia to Answer Open-Domain Questions\[[paper](https://arxiv.org/pdf/1704.00051.pdf)\]
-- Qanet: Combining local convolution with global self-attention for reading comprehension \[[paper](https://arxiv.org/pdf/1804.09541.pdf)\]
-- Bi_Directional Attention Flow for Machine Comprehension\[[paper](https://arxiv.org/pdf/1611.01603.pdf)\]
+- Reading Wikipedia to Answer Open-Domain Questions\[[paper](https://arxiv.org/pdf/1704.00051.pdf)\]<font color=red>(DrQA)</font>
+- Qanet: Combining local convolution with global self-attention for reading comprehension \[[paper](https://arxiv.org/pdf/1804.09541.pdf)\]<font color=red>(QANet)</font>
+- Bi_Directional Attention Flow for Machine Comprehension\[[paper](https://arxiv.org/pdf/1611.01603.pdf)\]<font color=red>(BiDAF)</font>
 - Dynamic Co-Attention Networks for Question Answering\[[paper](https://arxiv.org/pdf/1611.01604.pdf)\]
-- The Design and Implementation of XiaoIce, an Empathetic Social Chatbot\[[paper](https://arxiv.org/pdf/1812.08989.pdf)\]
+- The Design and Implementation of XiaoIce, an Empathetic Social Chatbot\[[paper](https://arxiv.org/pdf/1812.08989.pdf)\]<font color=red>(微软小冰)</font>
 - Neural Approaches to Conversational AI\[[paper](http://www.aclweb.org/anthology/P18-5002)\]
 
 #### 多轮对话
